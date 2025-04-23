@@ -7,13 +7,13 @@ services:
       dockerfile: server.dockerfile
     ports:
       - "8081:8081"
-    environment:
-      - CONFIG_FILE_PATH=/app/config.json
     volumes:
       - ./config.json:/app/config.json
       - ./tests.yaml:/app/tests.yaml
       - ./certs/private_key.pem:/app/certs/private_key.pem
       - ./certs/public_key.pem:/app/certs/public_key.pem
+    env_file:
+      - env/server.env
     networks:
       backend:
     depends_on:
@@ -28,10 +28,8 @@ services:
     restart: always
     volumes:
       - db-data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=postgres
-      - POSTGRES_PASSWORD=demonpiska777
+    env_file:
+      - env/postgres.env
     ports:
       - "5433:5432"
     healthcheck:
@@ -49,9 +47,8 @@ services:
     ports:
       - '9000:9000'
       - '9005:9005'
-    environment:
-      - MINIO_ROOT_USER=test
-      - MINIO_ROOT_PASSWORD=Ro2uym0AbpzwIy7vXwKcBRpkm2aQG3I0fiyq9LfzKRBm20dnwE1DejR31pz8NsyqvF0V38rqmo
+    env_file:
+      - env/minio.env
     restart: always
     volumes:
       - minio-data:/data

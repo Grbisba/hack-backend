@@ -8,7 +8,6 @@
 *.out
 go.work
 go.work.sum
-.env
 
 config.toml
 config.yaml
@@ -23,6 +22,8 @@ config.json
 .idea
 certs
 ignored
+
+env/
 
 .DS_Store
 
