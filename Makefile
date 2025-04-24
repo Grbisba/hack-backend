@@ -3,6 +3,10 @@ help:
 	@echo "Welcome to helper of Makefile"
 	@echo "Use `make <target>` where <target> is one of:"
 	@echo "key-gen	creating a couple of keys and login and password files in secret directory"
+	@echo "lines	return a total lines of code in project"
+	@echo "build	create a binary file"
+	@echo "dock/run	run docker compose"
+
 
 
 .PHONY: key-gen
